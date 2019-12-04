@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <script src="https://www.gstatic.com/firebasejs/5.7.1/firebase.js"></script>
+        
+        <link rel="stylesheet" href="./css/style.css">
+        
+    </head>
+    <body onload="loadprev()">
+        
+        <!--- HEADER -->
+        <div  style="width:100%;background-color: white;box-shadow: 0 0 4px 6px rgba(195,195,195,0.2);margin-left: -10px;margin-top: -10px;color:darkturquoise; position: fixed;" >
+           <center><h1 style="max-width: 800px">PRIISH E-COMMERCE</h1></center> 
+        </div>
+        <div style="height: 130px"></div>
+        <!-- BODY -->
+        <div class="row">
+            <div class="col-10"></div>
+            <div class="col-40 border-box" id="step1">
+                <img src="./profile.jpg" height="60px" width="60px" style="float: left;padding: 10px;margin-right: 80px;">
+                <h4>Step 1.</h4>
+                <span class="note" style="margin-bottom: 2px;">Create account</span>
+            </div>
+            <div class="col-40 border-box" id="step2">
+                <img src="./verify.jpg" height="60px" width="60px" style="float:left;padding:20px;margin-right: 80px;">
+                <h4>Step 2.</h4>
+                <span class="note" style="margin-bottom: 2px;">Verify your details</span>
+            </div>
+                 <div class="col"></div>    
+        </div>
+        <div class="row">
+            <div class="col-10"></div>
+        <div class="step-loader col-80" id="step-loader">
+            
+            <div id='step1-container'>
+                <p class='heading'>Create your account</p>
+                <h4>Username *</h4>
+                <input type='text' id='name' oninput='checkName()'>
+                <span class='' id='nameError'></span><br>
+                <span class='note'>This will be your username.</span>
+                <h4>Email *</h4>
+                <input type='text' id='mail'><br>
+                <span class='note'>Add your email address.</span>
+                <h4>Phone *</h4>
+                <input type='tel' id='phone'><br>
+                <span class='note'>You phone for messaging services.</span>
+                <h4>Password *</h4>
+                <input type='password' id='pass'><br>
+                <span class='note'>Enter your password.</span>
+                <h4>Confirm Password *</h4>
+                <input type='password' id='repass' oninput="validatePassword()"><span class='' id='passError'></span><br><br>
+                <span class='note'>Confirm your passowrd.</span>
+                <button onclick='loadnext()' id='next' class='positive right'>NEXT &rarr;</button>
+            </div>
+            <div id='step2-container'>
+                <p class='heading'>Verify details</p>
+                <h4>Enter otp*</h4>
+                <input type='text' id='otp'><button onclick="sendOTP()" id="sendotpbtn">RESEND</button><br>
+                <button onclick="verifyOTP()" style="margin: 5px">VERIFY OTP</button>
+                <span class='note' id="otpnote">OTP sent your mobile</span>
+                <h4>Email *</h4>
+                
+                <button onclick="sendMail()" id="sendmailbtn">RESEND MAIL VERIFICATION</button><br>
+                <span class='note' id="mailnote">Verification link sent to mail</span><br>
+                <button onclick="signUp()" style="width:50%;background-color: cadetblue;color: white;padding: 5px;margin:10px">SIGNUP</button>
+                <button onclick='loadprev()' class='positive left' >&larr; PREVIOUS</button>
+            </div>
+            
+        </div><div class="col"></div>
+            </div>
+        <script src="./validations.js"></script>
+    </body>
+</html>

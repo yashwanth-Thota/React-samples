@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+<!--    <h1 id="text"></h1>-->
+        <input type="text" placeholder="NAME" id="name"><input type="tel" placeholder="+91-9999999999" id="phone"><input type="password" placeholder="PASSWORD" id="pass"><button onclick="add()">Submit</button><p id="get"></p>
+        <script src="https://www.gstatic.com/firebasejs/5.7.1/firebase.js"></script>
+		<input type="text" id="mail"><input type="text" id="pass1"><button onclick="signIn()">SIGIN</button><button onclick="showUser()">SIGNUP</button><br>
+        
+<script>
+document.addEventListener('contextmenu', event => event.preventDefault());
+  // Initialize Firebase
+  var config = {
+    apiKey: "FIREBASE_API_KEY",
+    authDomain: "FIREBASE_DOMAIN",
+    databaseURL: "FIREBASE_DB_URL",
+    projectId: "FIREBASE_PROJECT_ID",
+    storageBucket: "FIREBASE_STORAGE_BUCKET",
+    messagingSenderId: "FIREBASE_SENDER_ID"
+  };
+  firebase.initializeApp(config);
+    var name=document.getElementById("name");
+    var phone=document.getElementById("phone");
+    var mail=document.getElementById("mail");
+    function add(){
+        var n=document.getElementById("name").value;
+        db=firebase.database().ref("users").child(n);
+        //db.set({name:n,mail:"demo@gmail.com",phone:document.getElementById("phone").value,pass:document.getElementById("pass")});
+        db.once('value',snap=>document.getElementById("get").innerHTML=snap.val().name);
+       
+    }
+	function signIn(){alert('ok');
+		var m=document.getElementById('mail').value;
+		var p=document.getElementById('pass1').value;
+		var auth=firebase.auth();
+		var p=auth.signInWithEmailAndPassword(m,p);
+	}
+    function showUser(){alert("ok");
+        var ref=firebase.auth().database().ref("users").child(document.getElementById("name").value);
+        alert(ref.name);
+    }
+	function signUp(){
+	
+		var m=document.getElementById('mail').value;
+		var p=document.getElementById("pass1").value;alert(p);
+		var auth=firebase.auth();
+		auth.createUserWithEmailAndPassword(m,p);var p=auth.signInWithEmailAndPassword(m,p);
+		p.catch(e=>console.log(e.message));
+		var user = firebase.auth().currentUser;
+        user.sendEmailVerification().then(function() {
+            // Email sent.
+            alert("sent sucessfully");
+        }).catch(function(error) {
+            // An error happened.
+            alert(error.message);
+        });
+	}	
+</script>
+    </body>
+</html>

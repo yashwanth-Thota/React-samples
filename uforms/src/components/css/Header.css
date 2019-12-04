@@ -1,0 +1,28 @@
+header{
+    background-color:  #3a3761;
+    width:100vw;
+    height:7vh; 
+    position: fixed;
+    z-index: 9999;
+    top:0;
+    left:0;   
+    line-height: 7vh;
+}
+
+.center{
+    margin:auto;
+    left:45vw;
+}
+.nav-item{
+    text-decoration: none;
+    color:#cccbdd;
+    position: absolute;
+    font-size: 24px;
+    font-weight: 600;
+}
+.nav-item-right{
+    right:6vw;
+}
+.nav-item:hover{
+    color:#fff;
+}
